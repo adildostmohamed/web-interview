@@ -10,6 +10,9 @@ plugins:
 settings:
   react:
     version: 16.6.3
+  import/resolver:
+    node:
+      paths: src
 
 parserOptions:
   ecmaVersion: 6

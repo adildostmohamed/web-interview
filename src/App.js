@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 
-import logo from './logo.png'
+import Header from 'components/Header'
+// import logo from './logo.png'
 import { API_ENDPOINT } from './config'
 
-import './App.scss'
+import 'styles/main.scss'
 
 class App extends Component {
   constructor(props) {
@@ -58,10 +59,8 @@ class App extends Component {
 
     return (
       <div className="app">
+        <Header />
         <h2 className="h6">New appointment</h2>
-        <div className="app-header">
-          <img src={logo} className="app-logo" alt="Babylon Health" />
-        </div>
         <div style={{ maxWidth: 600, margin: '24px auto' }}>
           <div
             className="button"

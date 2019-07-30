@@ -1,0 +1,11 @@
+$font-family-sans: 'Open Sans', sans-serif;
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: $font-family-sans;
+  color: $secondary-dark;
+}
