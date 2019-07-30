@@ -1,0 +1,12 @@
+@import 'src/styles/base/variables/variables';
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: $border-standard;
+  padding: 8px;
+}
+
+.header__logo {
+  max-height: 32px;
+}
