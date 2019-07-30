@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 
 import Header from 'components/Header'
-// import logo from './logo.png'
+import { UserProvider } from './context/UserContext'
+import AppointmentForm from 'components/AppointmentForm'
 import { API_ENDPOINT } from './config'
 
 import 'styles/main.scss'
@@ -59,71 +60,74 @@ class App extends Component {
 
     return (
       <div className="app">
-        <Header />
-        <h2 className="h6">New appointment</h2>
-        <div style={{ maxWidth: 600, margin: '24px auto' }}>
-          <div
-            className="button"
-            id="GP-button"
-            onClick={e => {
-              this.setState({ selectedAppointmentType: 'gp' })
-            }}
-          >
-            GP
-          </div>
-          <div
-            className="button"
-            onClick={e => {
-              this.setState({ selectedAppointmentType: 'Therapist' })
-            }}
-          >
-            Therapist
-          </div>
-          <div
-            className="button"
-            onClick={e => {
-              this.setState({ selectedAppointmentType: 'Physio' })
-            }}
-          >
-            Physio
-          </div>
-          <div
-            className="button"
-            onClick={e => {
-              this.setState({ selectedAppointmentType: 'specialist' })
-            }}
-          >
-            Specialist
-          </div>
-          <div>
-            <strong>Appointments</strong>
-            {slots.map(slot => (
-              <li
-                key={slot.id}
-                className="appointment-button"
-                onClick={() => {
-                  this.setState({ selectedAppointment: slot })
-                }}
-              >
-                {slot.time}
-              </li>
-            ))}
-          </div>
-          <div>
-            <strong>Notes</strong>
-            <textarea />
-          </div>
-          <div>
+        <UserProvider>
+          <Header />
+          <AppointmentForm />
+          <h2 className="h6">New appointment</h2>
+          <div style={{ maxWidth: 600, margin: '24px auto' }}>
             <div
               className="button"
-              onClick={() => {
-                /* TODO: submit the data */
+              id="GP-button"
+              onClick={e => {
+                this.setState({ selectedAppointmentType: 'gp' })
               }}
             >
-              Book appointment
+              GP
+            </div>
+            <div
+              className="button"
+              onClick={e => {
+                this.setState({ selectedAppointmentType: 'Therapist' })
+              }}
+            >
+              Therapist
+            </div>
+            <div
+              className="button"
+              onClick={e => {
+                this.setState({ selectedAppointmentType: 'Physio' })
+              }}
+            >
+              Physio
+            </div>
+            <div
+              className="button"
+              onClick={e => {
+                this.setState({ selectedAppointmentType: 'specialist' })
+              }}
+            >
+              Specialist
+            </div>
+            <div>
+              <strong>Appointments</strong>
+              {slots.map(slot => (
+                <li
+                  key={slot.id}
+                  className="appointment-button"
+                  onClick={() => {
+                    this.setState({ selectedAppointment: slot })
+                  }}
+                >
+                  {slot.time}
+                </li>
+              ))}
+            </div>
+            <div>
+              <strong>Notes</strong>
+              <textarea />
+            </div>
+            <div>
+              <div
+                className="button"
+                onClick={() => {
+                  /* TODO: submit the data */
+                }}
+              >
+                Book appointment
+              </div>
             </div>
           </div>
-        </div>
+        </UserProvider>
       </div>
     )
   }
