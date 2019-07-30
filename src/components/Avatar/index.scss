@@ -1,0 +1,17 @@
+@import 'src/styles/base/base';
+
+.avatar {
+  display: flex;
+  align-items: center;
+}
+
+.avatar__img {
+  width: 56px;
+  height: auto;
+}
+
+.avatar__name {
+  margin: 0 0 0 8px;
+  font-weight: 600;
+  color: $bold-text-color;
+}
