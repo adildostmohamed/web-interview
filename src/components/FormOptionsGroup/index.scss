@@ -1,0 +1,21 @@
+@import 'src/styles/base/base';
+
+.option-group {
+  padding: 0;
+  border: none;
+  margin: 0 0 16px 0;
+  overflow: hidden;
+  min-inline-size: auto;
+}
+
+.option-group__legend {
+  font-weight: bold;
+  color: $bold-text-color;
+  margin: 0;
+}
+
+.option-group__options {
+  display: flex;
+  padding: 16px 0;
+  overflow-y: auto;
+}
