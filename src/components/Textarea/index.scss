@@ -1,0 +1,24 @@
+@import 'src/styles/base/base';
+
+.textarea__wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 16px 0;
+}
+
+.textarea__label {
+  font-weight: bold;
+  color: #353a46;
+  margin: 0;
+}
+
+.textarea__input {
+  border: $border-standard;
+  border-radius: 4px;
+  margin: 16px 0;
+  padding: 8px;
+
+  &:focus {
+    outline: 2px solid $focus-border;
+  }
+}

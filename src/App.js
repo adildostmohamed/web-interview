@@ -63,8 +63,8 @@ class App extends Component {
         <UserProvider>
           <Header />
           <AppointmentForm />
-          <h2 className="h6">New appointment</h2>
-          <div style={{ maxWidth: 600, margin: '24px auto' }}>
+          {/* <h2 className="h6">New appointment</h2> */}
+          {/* <div style={{ maxWidth: 600, margin: '24px auto' }}>
             <div
               className="button"
               id="GP-button"
@@ -112,21 +112,7 @@ class App extends Component {
                 </li>
               ))}
             </div>
-            <div>
-              <strong>Notes</strong>
-              <textarea />
-            </div>
-            <div>
-              <div
-                className="button"
-                onClick={() => {
-                  /* TODO: submit the data */
-                }}
-              >
-                Book appointment
-              </div>
-            </div>
-          </div>
+          </div> */}
         </UserProvider>
       </div>
     )
