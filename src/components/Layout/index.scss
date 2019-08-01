@@ -1,0 +1,21 @@
+@import 'src/styles/base/base';
+
+.page {
+  overflow: hidden;
+}
+
+.page__body {
+  width: 100%;
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    width: 600px;
+    margin: 0 auto;
+  }
+  @media (min-width: map-get($grid-breakpoints, lg)) {
+    width: 992px;
+    margin: 0 auto;
+  }
+  @media (min-width: map-get($grid-breakpoints, xl)) {
+    width: 1200px;
+    margin: 0 auto;
+  }
+}

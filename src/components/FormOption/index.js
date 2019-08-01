@@ -32,10 +32,6 @@ FormOption.propTypes = {
   optionGroupType: PropTypes.string.isRequired,
   optionGroupName: PropTypes.string.isRequired,
   handleOptionChange: PropTypes.func.isRequired,
-  selectedOptions: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.string,
-  ]).isRequired,
   option: PropTypes.shape({
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,

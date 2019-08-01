@@ -9,7 +9,7 @@ const FormOptionsGroup = ({
   optionGroupType,
   optionGroupName,
   handleOptionChange,
-  selectedOptions,
+  formValue,
   options,
 }) => {
   return (
@@ -25,7 +25,7 @@ const FormOptionsGroup = ({
                 optionGroupType={optionGroupType}
                 optionGroupName={optionGroupName}
                 handleOptionChange={handleOptionChange}
-                selected={selectedOptions.indexOf(option.id) !== -1}
+                selected={formValue.indexOf(option.id) !== -1}
               />
             )
           })}
@@ -40,7 +40,7 @@ FormOptionsGroup.propTypes = {
   optionGroupType: PropTypes.string.isRequired,
   optionGroupName: PropTypes.string.isRequired,
   handleOptionChange: PropTypes.func.isRequired,
-  selectedOptions: PropTypes.oneOfType([
+  formValue: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.string,
   ]).isRequired,
