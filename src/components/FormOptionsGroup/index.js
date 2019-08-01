@@ -5,27 +5,27 @@ import FormOption from 'components/FormOption'
 import './index.scss'
 
 const FormOptionsGroup = ({
-  optionGroupTitle,
-  optionGroupType,
-  optionGroupName,
-  handleOptionChange,
+  label,
+  componentType,
+  formName,
+  changeHandler,
   formValue,
   options,
 }) => {
   return (
     <div className="option-group__wrapper">
       <fieldset className="option-group">
-        <legend className="option-group__legend">{optionGroupTitle}</legend>
+        <legend className="option-group__legend">{label}</legend>
         <div className="option-group__options">
           {options.map(option => {
             return (
               <FormOption
                 key={option.id}
                 option={option}
-                optionGroupType={optionGroupType}
-                optionGroupName={optionGroupName}
-                handleOptionChange={handleOptionChange}
-                selected={formValue.indexOf(option.id) !== -1}
+                componentType={componentType}
+                formName={formName}
+                changeHandler={changeHandler}
+                checked={formValue.indexOf(option.id) !== -1}
               />
             )
           })}
@@ -36,10 +36,10 @@ const FormOptionsGroup = ({
 }
 
 FormOptionsGroup.propTypes = {
-  optionGroupTitle: PropTypes.string.isRequired,
-  optionGroupType: PropTypes.string.isRequired,
-  optionGroupName: PropTypes.string.isRequired,
-  handleOptionChange: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+  componentType: PropTypes.string.isRequired,
+  formName: PropTypes.string.isRequired,
+  changeHandler: PropTypes.func.isRequired,
   formValue: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.string,

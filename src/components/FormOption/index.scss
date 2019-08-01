@@ -2,15 +2,18 @@
 
 .option {
   display: flex;
-  height: 32px;
+  height: 34px;
   align-items: center;
   justify-content: center;
   margin: 0 16px 0 0;
-  padding: 0 16px;
   border: $border-standard;
   border-radius: 5rem;
   background-color: white;
   color: $secondary-dark;
+  transition: all 0.25s;
+  &:hover {
+    border: 1px solid $secondary-dark;
+  }
 }
 
 .option--selected {
@@ -18,9 +21,24 @@
   background-color: $positive;
   border: 1px solid $positive;
   color: white;
+  &:hover {
+    background-color: darken($positive, 5);
+    border: 1px solid darken($positive, 5);
+  }
 }
 
 .option__input {
   position: absolute;
   clip-path: polygon(0 0);
+}
+
+.option__label {
+  display: flex;
+  height: 100%;
+  flex: 1 0 auto;
+  padding: 0 16px;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
 }

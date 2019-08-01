@@ -5,21 +5,21 @@ import './index.scss'
 
 const FormOption = ({
   option,
-  optionGroupName,
-  optionGroupType,
-  handleOptionChange,
-  selected,
+  formName,
+  componentType,
+  changeHandler,
+  checked,
 }) => {
   return (
-    <div className={selected ? 'option--selected' : 'option'}>
+    <div className={checked ? 'option--selected' : 'option'}>
       <input
         className="option__input"
         id={option.id}
-        type={optionGroupType}
-        name={optionGroupName}
+        type={componentType}
+        name={formName}
         value={option.id}
-        checked={selected}
-        onChange={handleOptionChange}
+        checked={checked}
+        onChange={changeHandler}
       />
       <label className="option__label" htmlFor={option.id}>
         {option.label}
@@ -29,14 +29,14 @@ const FormOption = ({
 }
 
 FormOption.propTypes = {
-  optionGroupType: PropTypes.string.isRequired,
-  optionGroupName: PropTypes.string.isRequired,
-  handleOptionChange: PropTypes.func.isRequired,
+  componentType: PropTypes.string.isRequired,
+  formName: PropTypes.string.isRequired,
+  changeHandler: PropTypes.func.isRequired,
   option: PropTypes.shape({
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
   }).isRequired,
-  selected: PropTypes.bool.isRequired,
+  checked: PropTypes.bool.isRequired,
 }
 
 export default FormOption

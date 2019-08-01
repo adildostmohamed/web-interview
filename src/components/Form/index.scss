@@ -1,0 +1,32 @@
+@import 'src/styles/base/base';
+
+.form-wrapper {
+  padding: 32px 16px;
+}
+
+.form__title {
+  color: $bold-text-color;
+  margin: 0 0 24px 0;
+}
+
+.form {
+  border-top: $border-standard;
+  padding: 16px 0;
+  margin: 16px 0;
+}
+
+.form__submit {
+  width: 100%;
+  text-align: center;
+  background-color: $positive;
+  border: 1px solid $positive;
+  color: white;
+  height: 36px;
+  border-radius: 4px;
+  transition: all 0.25s;
+
+  &:hover {
+    cursor: pointer;
+    background-color: darken($positive, 5);
+  }
+}

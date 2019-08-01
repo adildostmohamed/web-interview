@@ -14,8 +14,8 @@
     width: 992px;
     margin: 0 auto;
   }
-  @media (min-width: map-get($grid-breakpoints, xl)) {
-    width: 1200px;
-    margin: 0 auto;
-  }
+  // @media (min-width: map-get($grid-breakpoints, xl)) {
+  //   width: 1200px;
+  //   margin: 0 auto;
+  // }
 }
