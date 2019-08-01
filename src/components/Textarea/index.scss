@@ -13,12 +13,14 @@
 }
 
 .textarea__input {
-  border: $border-standard;
+  border: 2px solid $border-color;
   border-radius: 4px;
   margin: 16px 0;
   padding: 8px;
+  transition: all 0.25s;
 
   &:focus {
-    outline: 2px solid $focus-border;
+    outline: none;
+    border: 2px solid $focus-border;
   }
 }

@@ -2,7 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import './index.scss'
-const Textarea = ({ id, label, value, handleTextareaChange, placeholder }) => {
+const Textarea = ({
+  id,
+  label,
+  formValue,
+  handleTextareaChange,
+  placeholder,
+}) => {
   return (
     <div className="textarea__wrapper">
       <label htmlFor={id} className="textarea__label">
@@ -14,7 +20,7 @@ const Textarea = ({ id, label, value, handleTextareaChange, placeholder }) => {
         rows="4"
         id={id}
         placeholder={placeholder}
-        value={value}
+        value={formValue}
         onChange={handleTextareaChange}
       />
     </div>
@@ -24,7 +30,7 @@ const Textarea = ({ id, label, value, handleTextareaChange, placeholder }) => {
 Textarea.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  formValue: PropTypes.string.isRequired,
   handleTextareaChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
 }

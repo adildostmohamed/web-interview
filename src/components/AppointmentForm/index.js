@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Avatar from 'components/Avatar'
 import FormOptionsGroup from 'components/FormOptionsGroup'
 import Textarea from 'components/Textarea'
+import { API_ENDPOINT } from 'config'
 
 import './index.scss'
 
@@ -16,7 +17,7 @@ const consultantTypes = [
   },
   {
     id: 'nurse',
-    label: 'nurse',
+    label: 'Nurse',
   },
   {
     id: 'therapist',
@@ -44,10 +45,63 @@ const AppointmentForm = () => {
   // as an added enhancement can abstract this into a separate form component if you want to dynamically generate a form for multiple areas
   const [appointmentFormState, setAppointmentFormState] = useState({
     consultantType: 'gp',
-    dateTime: undefined,
+    dateTime: '',
     notes: '',
     appointmentType: ['video', 'audio'],
   })
+
+  const [allAvailableSlots, setAllAvailableSlots] = useState([])
+  const [matchingSlots, setMatchingSlots] = useState([])
+  const [availableSlotsLoaded, setAvailableSlotsLoaded] = useState(false)
+
+  useEffect(() => {
+    const fetchAvailableSlots = async () => {
+      // use the defined endpoint to get data for user id 1 to try and fetch the data from the endpoint and throw an error if it fails
+      try {
+        const res = await fetch(`${API_ENDPOINT}/availableSlots`)
+        // make sure that the response looks good and if it doesnt pass on the message so it can be caught
+        // this would be handy if you have to deal with server errors like a 404 because it wont get caught in the catch for the await block
+        if (res.ok) {
+          const availableSlots = await res.json()
+          return availableSlots
+        } else {
+          const { status, statusText } = res
+          throw new Error({ errorCode: status, message: statusText })
+        }
+      } catch (e) {
+        throw new Error(e)
+      }
+    }
+
+    const findMatchingAvailableSlots = slots => {
+      return slots.filter(
+        slot =>
+          slot.consultantType.indexOf(appointmentFormState.consultantType) !==
+          -1
+      )
+      // .filter(slot =>
+      //   appointmentFormState.appointmentType.map(
+      //     type => slot.appointmentType.indexOf(type) !== -1
+      //   )
+      // )
+    }
+
+    if (!availableSlotsLoaded) {
+      fetchAvailableSlots()
+        .then(data => {
+          setAvailableSlotsLoaded(true)
+          setAllAvailableSlots(data)
+          setMatchingSlots(findMatchingAvailableSlots(data))
+        })
+        .catch(error => console.error(error))
+    } else {
+      setMatchingSlots(findMatchingAvailableSlots(allAvailableSlots))
+    }
+  }, [
+    appointmentFormState.consultantType,
+    availableSlotsLoaded,
+    allAvailableSlots,
+  ])
 
   const handleRadioOptionChange = event => {
     event.preventDefault()
@@ -107,7 +161,12 @@ const AppointmentForm = () => {
     return setAppointmentFormState(newAppointmentFormState)
   }
 
-  const appointmentTypeFormState = appointmentFormState['appointmentType']
+  const formatAvailableSlots = slots => {
+    return slots.map(slot => {
+      const formattedTime = new Date(slot.time)
+      return { id: slot.time, label: formattedTime.toLocaleDateString('en-US') }
+    })
+  }
 
   return (
     <div className="form-wrapper">
@@ -120,7 +179,7 @@ const AppointmentForm = () => {
           optionGroupType="radio"
           optionGroupName="consultantType"
           handleOptionChange={handleRadioOptionChange}
-          selectedOptions={appointmentFormState['consultantType']}
+          formValue={appointmentFormState['consultantType']}
         />
         <FormOptionsGroup
           optionGroupTitle="Appointment Type"
@@ -128,16 +187,23 @@ const AppointmentForm = () => {
           optionGroupType="checkbox"
           optionGroupName="appointmentType"
           handleOptionChange={handleCheckboxOptionChange}
-          selectedOptions={[...appointmentTypeFormState]}
+          formValue={appointmentFormState['appointmentType']}
+        />
+        <FormOptionsGroup
+          optionGroupTitle="Date & Time"
+          options={formatAvailableSlots(matchingSlots)}
+          optionGroupType="radio"
+          optionGroupName="dateTime"
+          handleOptionChange={handleRadioOptionChange}
+          formValue={appointmentFormState['dateTime']}
         />
         <Textarea
           id="notes"
           label="Notes"
-          value={appointmentFormState['notes']}
+          formValue={appointmentFormState['notes']}
           handleTextareaChange={handleTextareaChange}
           placeholder="Describe your symptoms"
         />
-        {JSON.stringify(appointmentFormState['notes'])}
       </form>
     </div>
   )

@@ -40,7 +40,10 @@ const UserProvider = ({ children }) => {
 }
 
 UserProvider.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.shape(),
+    PropTypes.arrayOf(PropTypes.shape()),
+  ]).isRequired,
 }
 
 export { UserContext, UserProvider }
